@@ -1,7 +1,6 @@
 <?php
 require_once("head.php");
 require_once("database-connection.php");
-
 $databaseConnection;
 $query = $databaseConnection->query("SELECT 
     pokemon.*,
@@ -9,7 +8,6 @@ $query = $databaseConnection->query("SELECT
     type2.libelleType AS secondType
 FROM pokemon LEFT JOIN typepokemon AS type1 ON type1.IdType = pokemon.IdTypePokemon 
 LEFT JOIN typepokemon AS type2 ON type2.IdType = pokemon.IdSecondTypePokemon ORDER BY IdPokemon ASC;");
-
 if (!$query) {
     throw new RuntimeException("Cannot execute query. Cause : " . mysqli_error($databaseConnection));
 } else {
@@ -24,16 +22,18 @@ if (!$query) {
         <title>Pokemon Table</title>
         <style>
             table {
-                width: 80%;
+                width: 100%;
                 margin:auto;
                 border-collapse: collapse;
+                justify-content: center;
             }
 
             th,
             td {
                 border: 1px solid #ddd;
                 padding: 8px;
-                text-align: left;
+                text-align: center;
+                justify-content: center;
             }
 
             th {
