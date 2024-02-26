@@ -10,10 +10,5 @@
                 Pokémons par type
             </li>
         </a>
-        <a href="database-connection.php">
-            <li>
-                Connexion au pokedex
-            </li> 
-        </a>
     </ul>
 </aside>
