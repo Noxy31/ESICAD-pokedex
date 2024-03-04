@@ -33,6 +33,7 @@ if (!$query) {
                     <th>Type 2</th>
                 </tr>
             </thead>
+            
             <tbody> 
                 <?php foreach ($result as $row) : ?> 
                     <tr>
