@@ -13,15 +13,6 @@ if (!$query) {
 } else {
     $result = $query->fetch_all(MYSQLI_ASSOC);
 ?>
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Pokemon Table</title>
-            
-    </head>
-
     <body>
         <table class="tabList">
             <thead>

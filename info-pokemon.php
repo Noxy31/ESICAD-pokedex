@@ -1,12 +1,23 @@
 <?php
 require_once("head.php");
+require_once("database-connection.php");
+
+$idPokemon = $_GET["id"];
+$query = $databaseConnection->query("SELECT * FROM Pokemon WHERE idPokemon = $idPokemon");
+$result = $query->fetch_assoc();
+
 ?>
-<pre>
-    &lt;
-    A REMPLACER PAR VOTRE CODE POUR CHARGER ET AFFICHER DANS UN TABLEAU LA LISTE DES POKEMONS CLASSES PAR LEUR TYPE, PUIS PAR LEUR NOM.
-    CHAQUE POKEMON DOIT ETRE CLIQUABLE POUR NAVIGUER SUR UNE PAGE OU L'ON AFFICHE SON IMAGE ET L'ENSEMBLE DE SES CARACTERISTIQUES
-    &gt;
-    </pre>
+    <body>
+        <div class="pokeCard">
+            <h1><?php echo $result["NomPokemon"]; ?></h1>
+            <div class="imgUnique"><img src='<?php echo $result["urlPhoto"]; ?>' alt="Pokemon Photo"></div>
+        </div>
+
+
+        
+
+
+    </body>
 <?php
 require_once("footer.php");
 ?>

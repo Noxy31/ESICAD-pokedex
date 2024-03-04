@@ -8,24 +8,24 @@
   src: url("assets/Pokemon Solid.ttf");
 }
 
-@font-family {
-  
-}
 
 .tabList {
   width: 100%;
   margin:auto;
   border-collapse: collapse;
   justify-content: center;
+  font-size: 1.3rem;
 }
 
 .linesList {
   text-decoration: none;
+  max-width: 150px;
+  max-height: 150px;
 }
 
 th,
 td {
-  border: 1px solid #ddd;
+  border: 2px solid #ddd;
   padding: 8px;
   text-align: center;
   justify-content: center;
@@ -36,10 +36,6 @@ th {
   text-decoration: none;
 }
 
-img {
-  max-width: 100px;
-  max-height: 100px;
-}
 
 html,
 body {
@@ -164,3 +160,14 @@ footer {
 .text-center {
   text-align: center;
 }
+
+.pokeCard {
+  text-align: center;
+  box-shadow: solid 1px #000000;
+  background-color: linear-gradient #210404 #670a0a;
+}
+
+.imgUnique {
+  text-align: left;
+}
+
