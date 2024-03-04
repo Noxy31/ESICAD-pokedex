@@ -15,41 +15,15 @@ if (!$query) {
 ?>
     <!DOCTYPE html>
     <html lang="en">
-
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Pokemon Table</title>
-        <style>
             
-            table {
-                width: 100%;
-                margin:auto;
-                border-collapse: collapse;
-                justify-content: center;
-            }
-
-            th,
-            td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: center;
-                justify-content: center;
-            }
-
-            th {
-                background-color: #f2f2f2;
-            }
-
-            img {
-                max-width: 100px;
-                max-height: 100px;
-            }
-        </style>
     </head>
 
     <body>
-        <table>
+        <table class="tabList">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -59,8 +33,8 @@ if (!$query) {
                     <th>Type 2</th>
                 </tr>
             </thead>
-            <tbody>
-                <?php foreach ($result as $row) : ?>
+            <tbody> 
+                <?php foreach ($result as $row) : ?> 
                     <tr>
                         <td><?php echo $row["IdPokemon"]; ?></td>
                         <td><?php echo $row['NomPokemon']; ?></td>

@@ -8,6 +8,30 @@
   src: url("assets/Pokemon Solid.ttf");
 }
 
+.tabList {
+  width: 100%;
+  margin:auto;
+  border-collapse: collapse;
+  justify-content: center;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  justify-content: center;
+}
+
+th {
+  background-color: #f2f2f2;
+}
+
+img {
+  max-width: 100px;
+  max-height: 100px;
+}
+
 html,
 body {
   margin: 0;
