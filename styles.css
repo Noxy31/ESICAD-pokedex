@@ -8,11 +8,19 @@
   src: url("assets/Pokemon Solid.ttf");
 }
 
+@font-family {
+  
+}
+
 .tabList {
   width: 100%;
   margin:auto;
   border-collapse: collapse;
   justify-content: center;
+}
+
+.linesList {
+  text-decoration: none;
 }
 
 th,
@@ -25,6 +33,7 @@ td {
 
 th {
   background-color: #f2f2f2;
+  text-decoration: none;
 }
 
 img {
@@ -82,6 +91,7 @@ body {
   align-items: stretch;
   justify-content: space-between;
   height: 100vh;
+  text-decoration: none;
 }
 #main-wrapper {
   flex: 1 0 auto;

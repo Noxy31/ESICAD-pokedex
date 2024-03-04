@@ -6,7 +6,7 @@ $query = $databaseConnection->query("SELECT
     pokemon.*,
     type1.libelleType AS firstType,
     type2.libelleType AS secondType
-FROM pokemon LEFT JOIN typepokemon AS type1 ON type1.IdType = pokemon.IdTypePokemon 
+FROM pokemon JOIN typepokemon AS type1 ON type1.IdType = pokemon.IdTypePokemon 
 LEFT JOIN typepokemon AS type2 ON type2.IdType = pokemon.IdSecondTypePokemon ORDER BY IdPokemon ASC;");
 if (!$query) {
     throw new RuntimeException("Cannot execute query. Cause : " . mysqli_error($databaseConnection));
@@ -34,16 +34,18 @@ if (!$query) {
                 </tr>
             </thead>
             
-            <tbody> 
+            <tbody>
                 <?php foreach ($result as $row) : ?> 
                     <tr>
                         <td><?php echo $row["IdPokemon"]; ?></td>
-                        <td><?php echo $row['NomPokemon']; ?></td>
-                        <td><img src='<?php echo $row["urlPhoto"]; ?>' alt="Pokemon Photo"></td>
+                        <td><a class="linesList" href="info-pokemon.php?id=<?php echo $row["IdPokemon"]; ?>"><?php echo $row['NomPokemon']; ?></a></td>
+                        <td><a class="linesList" href="info-pokemon.php?id=<?php echo $row["IdPokemon"]; ?>"><img src='<?php echo $row["urlPhoto"]; ?>' alt="Pokemon Photo"></a></td>
                         <td><?php echo $row["firstType"]; ?></td>
                         <td><?php echo $row["secondType"]; ?></td>
                     </tr>
-                <?php endforeach; ?>
+                <?php endforeach; 
+                ?>
+                
             </tbody>
         </table>
     </body>
