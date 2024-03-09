@@ -163,11 +163,13 @@ footer {
 
 .pokeCard {
   text-align: center;
-  box-shadow: solid 1px #000000;
-  background-color: linear-gradient #210404 #670a0a;
 }
 
 .imgUnique {
   text-align: left;
+}
+
+.pokeInfo {
+  
 }
 

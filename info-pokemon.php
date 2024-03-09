@@ -11,10 +11,9 @@ $result = $query->fetch_assoc();
         <div class="pokeCard">
             <h1><?php echo $result["NomPokemon"]; ?></h1>
             <div class="imgUnique"><img src='<?php echo $result["urlPhoto"]; ?>' alt="Pokemon Photo"></div>
+            <div class="pokeInfo"></div>
+
         </div>
-
-
-        
 
 
     </body>
