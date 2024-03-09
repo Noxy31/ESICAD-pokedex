@@ -66,16 +66,27 @@ $queryPreviousEvolution->bind_param("i", $idPokemon);
 $queryPreviousEvolution->execute();
 $resultPreviousEvolution = $queryPreviousEvolution->get_result()->fetch_assoc();
 
-// Récupérer les informations sur l'évolution du Pokémon
-$queryNextEvolution = $databaseConnection->prepare("SELECT p2.nomPokemon AS nextEvolution FROM evolutionpokemon pe JOIN Pokemon p2 ON pe.idEvolution = p2.idPokemon WHERE pe.idPokemon = ?");
-if ($queryNextEvolution === false) {
+// Récupérer les informations sur les pré-évolutions du Pokémon
+$queryPreviousEvolutions = $databaseConnection->prepare("SELECT p1.nomPokemon AS prevEvolution FROM evolutionpokemon pe JOIN Pokemon p1 ON pe.idPokemon = p1.idPokemon WHERE pe.idEvolution = ?");
+if ($queryPreviousEvolutions === false) {
     trigger_error('Erreur de préparation de la requête SQL: ' . $databaseConnection->error, E_USER_ERROR);
 }
 
-$queryNextEvolution->bind_param("i", $idPokemon);
-$queryNextEvolution->execute();
-$resultNextEvolution = $queryNextEvolution->get_result()->fetch_assoc();
+$queryPreviousEvolutions->bind_param("i", $idPokemon);
+$queryPreviousEvolutions->execute();
+$resultPreviousEvolutions = $queryPreviousEvolutions->get_result();
+
+// Récupérer les informations sur les évolutions du Pokémon
+$queryEvolutions = $databaseConnection->prepare("SELECT p2.nomPokemon AS nextEvolution FROM evolutionpokemon pe JOIN Pokemon p2 ON pe.idEvolution = p2.idPokemon WHERE pe.idPokemon = ?");
+if ($queryEvolutions === false) {
+    trigger_error('Erreur de préparation de la requête SQL: ' . $databaseConnection->error, E_USER_ERROR);
+}
+
+$queryEvolutions->bind_param("i", $idPokemon);
+$queryEvolutions->execute();
+$resultEvolutions = $queryEvolutions->get_result();
 ?>
+
 
 <body>
     <div class="pokeCard">
@@ -121,20 +132,30 @@ $resultNextEvolution = $queryNextEvolution->get_result()->fetch_assoc();
                 </div>
 
                 <div class="evolution">
-                    <?php
-                    if ($resultPreviousEvolution != null) {
-                        echo "<p>Pré-évolution : " . $resultPreviousEvolution["prevEvolution"] . "</p>";
-                    } else {
-                        echo "<p>Pas de pré-évolution.</p>";
-                    }
+    <?php
+    if ($resultPreviousEvolutions->num_rows > 0) {
+        echo "<p>Pré-évolution de " . $resultPokemon["NomPokemon"] . " :</p>";
+        echo "<ul>";
+        while ($rowPreviousEvolution = $resultPreviousEvolutions->fetch_assoc()) {
+            echo "<li>" . $rowPreviousEvolution["prevEvolution"] . "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p>Pas de pré-évolution.</p>";
+    }
 
-                    if ($resultNextEvolution != null) {
-                        echo "<p>Évolution : " . $resultNextEvolution["nextEvolution"] . "</p>";
-                    } else {
-                        echo "<p>Pas d'évolution.</p>";
-                    }
-                    ?>
-                </div>
+    if ($resultEvolutions->num_rows > 0) {
+        echo "<p>Évolutions de " . $resultPokemon["NomPokemon"] . " :</p>";
+        echo "<ul>";
+        while ($rowEvolution = $resultEvolutions->fetch_assoc()) {
+            echo "<li>" . $rowEvolution["nextEvolution"] . "</li>";
+        }
+        echo "</ul>";
+    } else {
+        echo "<p>Pas d'évolution.</p>";
+    }
+    ?>
+</div>
             </div>
         </div>
     </div>
