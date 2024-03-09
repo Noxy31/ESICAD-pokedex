@@ -160,16 +160,43 @@ footer {
 .text-center {
   text-align: center;
 }
-
 .pokeCard {
   text-align: center;
 }
 
-.imgUnique {
-  text-align: left;
-}
-
 .pokeInfo {
-  
+  display: grid;
+  grid-template-columns: 1fr 2fr; /* Deux colonnes pour l'image et les détails */
+  align-items: flex-start;
+  gap: 20px;
 }
 
+.imgUnique img {
+  max-width: 100%;
+}
+
+.infoDetails {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Deux colonnes pour les caractéristiques et les types */
+  gap: 20px;
+  font-size: 1.3rem;
+}
+
+.characteristiques {
+  margin: 10px;
+  padding: 10px;
+}
+
+.characteristiques table {
+  width: 100%;
+}
+
+.characteristiques h2 {
+  text-align: center;
+}
+
+.types {
+  margin: 10px;
+  padding: 10px;
+  font-size: 2rem;
+}

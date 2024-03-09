@@ -80,56 +80,66 @@ $resultNextEvolution = $queryNextEvolution->get_result()->fetch_assoc();
 <body>
     <div class="pokeCard">
         <h1><?php echo $resultPokemon["NomPokemon"]; ?></h1>
-        <div class="imgUnique"><img src='<?php echo $resultPokemon["urlPhoto"]; ?>' alt="Pokemon Photo"></div>
+        
         <div class="pokeInfo">
-            <h2>Caractéristiques :</h2>
-            <table>
-                <tr>
-                    <td>Points de vie (PV)</td>
-                    <td><?php echo $resultPokemon["PV"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Attaque</td>
-                    <td><?php echo $resultPokemon["Attaque"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Défense</td>
-                    <td><?php echo $resultPokemon["Defense"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Vitesse</td>
-                    <td><?php echo $resultPokemon["Vitesse"]; ?></td>
-                </tr>
-                <tr>
-                    <td>Spécial</td>
-                    <td><?php echo $resultPokemon["Special"]; ?></td>
-                </tr>
-            </table>
+            <div class="imgUnique"><img src='<?php echo $resultPokemon["urlPhoto"]; ?>' alt="Pokemon Photo"></div>
+            
+            <div class="infoDetails">
+                <div class="characteristiques">
+                    <h2>Caractéristiques :</h2>
+                    <table>
+                        <tr>
+                            <td>Points de vie (PV)</td>
+                            <td><?php echo $resultPokemon["PV"]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Attaque</td>
+                            <td><?php echo $resultPokemon["Attaque"]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Défense</td>
+                            <td><?php echo $resultPokemon["Defense"]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Vitesse</td>
+                            <td><?php echo $resultPokemon["Vitesse"]; ?></td>
+                        </tr>
+                        <tr>
+                            <td>Spécial</td>
+                            <td><?php echo $resultPokemon["Special"]; ?></td>
+                        </tr>
+                    </table>
+                </div>
 
-            <?php
-            echo "<p>Type 1 : " . $resultType1["libelleType"] . "</p>";
+                <div class="types">
+                    <p>Type 1 : <?php echo $resultType1["libelleType"]; ?></p>
+                    <?php
+                    if ($resultType2 !== null) {
+                        echo "<p>Type 2 : " . $resultType2["libelleType"] . "</p>";
+                    }
+                    ?>
+                </div>
 
-            if ($resultType2 !== null) {
-                echo "<p>Type 2 : " . $resultType2["libelleType"] . "</p>";
-            }
-            ?>
+                <div class="evolution">
+                    <?php
+                    if ($resultPreviousEvolution != null) {
+                        echo "<p>Pré-évolution : " . $resultPreviousEvolution["prevEvolution"] . "</p>";
+                    } else {
+                        echo "<p>Pas de pré-évolution.</p>";
+                    }
 
-            <?php
-            if ($resultPreviousEvolution != null) {
-                echo "<p>Pré-évolution : " . $resultPreviousEvolution["prevEvolution"] . "</p>";
-            } else {
-                echo "<p>Pas de pré-évolution.</p>";
-            }
-
-            if ($resultNextEvolution != null) {
-                echo "<p>Évolution : " . $resultNextEvolution["nextEvolution"] . "</p>";
-            } else {
-                echo "<p>Pas d'évolution connue.</p>";
-            }
-            ?>
+                    if ($resultNextEvolution != null) {
+                        echo "<p>Évolution : " . $resultNextEvolution["nextEvolution"] . "</p>";
+                    } else {
+                        echo "<p>Pas d'évolution.</p>";
+                    }
+                    ?>
+                </div>
+            </div>
         </div>
     </div>
 </body>
+
 
 <?php
 require_once("footer.php");
