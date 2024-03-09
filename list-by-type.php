@@ -20,15 +20,18 @@ $queryTypes = $databaseConnection->query("SELECT DISTINCT libelleType FROM TypeP
         
         $type = isset($_GET['type']) ? $_GET['type'] : null; // on récupère le type a afficher
 
-        if ($type) {             
+        if ($type) {
+            //on initie la requete, encore une fois avec prepare, bind et execute (pour eviter une injection sql sur le pokedex du prof Chen, sinon il sera pas content), 
+            // pour recuperer les libelle de type par rapport a leurs id dans la table de types             
             $queryTypeId = $databaseConnection->prepare("SELECT idType FROM TypePokemon WHERE libelleType = ?"); // on recupere l'ID du type spécifié depuis la base de données
-            $queryTypeId->bind_param("s", $type);
+            $queryTypeId->bind_param("s", $type); // on indique que les valeurs des parametres attendu sont de types "s", donc string, puisqu'on recupère les libelle
             $queryTypeId->execute();
 
             $resultTypeId = $queryTypeId->get_result();
             $typeRow = $resultTypeId->fetch_assoc();
 
-            //on initie la requete transaction pour recuperer les libelle de type par rapport a leurs id dans la table de types
+            //on initie la requete, encore une fois avec prepare, bind et execute (pour eviter une injection sql sur le pokedex du prof Chen, sinon il sera pas content), 
+            // pour recuperer les libelle de type par rapport a leurs id dans la table de types
             $queryPokemonsParType = $databaseConnection->prepare(" 
                 SELECT p.*, t1.libelleType AS Type1, t2.libelleType AS Type2
                 FROM Pokemon p
@@ -36,8 +39,8 @@ $queryTypes = $databaseConnection->query("SELECT DISTINCT libelleType FROM TypeP
                 LEFT JOIN TypePokemon t2 ON p.IdSecondTypePokemon = t2.idType
                 WHERE p.IdTypePokemon = ? OR p.IdSecondTypePokemon = ?
             ");
-            $queryPokemonsParType->bind_param("ii", $typeRow['idType'], $typeRow['idType']);
-            $queryPokemonsParType->execute(); // on l'execute
+            $queryPokemonsParType->bind_param("ii", $typeRow['idType'], $typeRow['idType']); // cette fois on indique "ii", car les deux valeurs attendus des deux variables sont des entiers (ici les deux types)
+            $queryPokemonsParType->execute();
             $resultPokemonsParType = $queryPokemonsParType->get_result();
 
             if ($resultPokemonsParType->num_rows > 0) { // si les resultats sont non null, on affiche le tableau
