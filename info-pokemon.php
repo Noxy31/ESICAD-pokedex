@@ -149,7 +149,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idPokemon']) && isset(
     $idUser = $_SESSION['idUser'];
     $queryAddToPokedex->bind_param("iis", $idUser, $idPokemon, $captureDate);
     if ($queryAddToPokedex->execute()) {
-        echo '<script>alert("Pokemon ajouté au Pokedex Utilisateur !");</script>';
+        echo '<script>alert("Pokemon ajouté au Pokedex Utilisateur !");</script>'; 
     }
 }
 ?>
