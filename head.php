@@ -9,7 +9,7 @@
     <link rel="icon" type="image/svg" href="assets/pokeball.svg" />
 </head>
 
-<script>
+<script> // fonction qui permet de gérer la recherche sur la barre de recherche
     document.addEventListener("DOMContentLoaded", function() {
         const searchInput = document.getElementById("q");
 
