@@ -1,7 +1,3 @@
-<!-- 
-    Ce fichier contient le début du document HTML et de sa balise <head>
-    Il permet de charger le fichier de styles CSS, le JS le cas échéant... 
--->
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -12,17 +8,19 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/svg" href="assets/pokeball.svg" />
 </head>
-<script>
-   document.addEventListener("DOMContentLoaded", function () {
-    const searchInput = document.getElementById("q");
 
-    searchInput.addEventListener("keydown", function (event) {
-        if (event.key === "Enter") {
-            searchInput.form.submit();
-        }
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById("q");
+
+        searchInput.addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                searchInput.form.submit();
+            }
+        });
     });
-});
-    </script>
+</script>
+
 <body>
     <header>
         <a href="index.php">
@@ -36,8 +34,6 @@
     </header>
 
     <div id="main-wrapper">
-
-
         <?php
         require_once("menu.php");
         ?>

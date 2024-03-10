@@ -60,7 +60,7 @@ $resultEvolutions = $queryEvolutions->get_result();
         <div class="pokeInfo">
             <div class="imgUnique"><img src='<?php echo $resultPokemon["urlPhoto"]; ?>' alt="Pokemon Photo"></div>
 
-            <div class="infoDetails">
+            <div class="infoDetails"> <!-- on crée le tableau, on affiche les types et les info d'evolutions -->
                 <div class="characteristiques">
                     <h2>Caractéristiques :</h2>
                     <table>
@@ -125,8 +125,34 @@ $resultEvolutions = $queryEvolutions->get_result();
         </div>
     </div>
 </body>
+<div class="capture-info"> <!-- on récupère les infos du pokemon affiché pour les ajouter a la table user_pokemon dans la BDD -->
+    <?php
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+    if (isset($_SESSION['idUser'])) { // on affiche le champ d'ajout de date et le bouton pour ajouter le pokemon au pokedex de l'user connecté
+        echo '<form id="captureForm" method="post">';
+        echo '<label for="captureDate">Date de capture :</label>';
+        echo '<input type="date" id="captureDate" name="captureDate" required><br>';
+        echo '<button type="submit">Ajouter au Pokedex Utilisateur</button>';
+        echo '<input type="hidden" name="idPokemon" value="' . $idPokemon . '">';
+        echo '</form>';
+    }
+    ?>
+</div>
 
-
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['idPokemon']) && isset($_POST['captureDate'])) {
+    $idPokemon = $_POST['idPokemon'];
+    $captureDate = $_POST['captureDate'];
+    $queryAddToPokedex = $databaseConnection->prepare("INSERT INTO user_pokemon (idUser, idPokemon, captureDate) VALUES (?, ?, ?)");
+    $idUser = $_SESSION['idUser'];
+    $queryAddToPokedex->bind_param("iis", $idUser, $idPokemon, $captureDate);
+    if ($queryAddToPokedex->execute()) {
+        echo '<script>alert("Pokemon ajouté au Pokedex Utilisateur !");</script>';
+    }
+}
+?>
 <?php
 require_once("footer.php");
 ?>

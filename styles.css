@@ -11,7 +11,7 @@
 
 .tabList {
   width: 100%;
-  margin:auto;
+  margin: auto;
   border-collapse: collapse;
   justify-content: center;
   font-size: 1.3rem;
@@ -52,19 +52,18 @@ body {
 
 header {
   background: rgb(255, 255, 255);
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 1) 0%,
-    var(--red-darker) 10%,
-    var(--red-darker) 100%
-  );
+  background: radial-gradient(circle,
+      rgba(255, 255, 255, 1) 0%,
+      var(--red-darker) 10%,
+      var(--red-darker) 100%);
   border-bottom: 1px solid var(--red-darker);
 }
-header > a {
+
+header>a {
   text-decoration: none;
 }
 
-header > a > h1 {
+header>a>h1 {
   margin: 0.5rem;
   text-align: center;
   font-family: "Pokemon", Arial, Helvetica, sans-serif;
@@ -89,6 +88,7 @@ body {
   height: 100vh;
   text-decoration: none;
 }
+
 #main-wrapper {
   flex: 1 0 auto;
   display: flex;
@@ -98,15 +98,14 @@ body {
 #main-wrapper main {
   flex: 1 0 auto;
 }
+
 #side-menu {
   min-width: 15rem;
   max-width: 25%;
   background: rgb(255, 255, 255);
-  background: linear-gradient(
-    180deg,
-    var(--red-darker) 0%,
-    var(--red-lighter) 100%
-  );
+  background: linear-gradient(180deg,
+      var(--red-darker) 0%,
+      var(--red-lighter) 100%);
 }
 
 #side-menu a {
@@ -136,7 +135,7 @@ footer {
   color: white;
 }
 
-#search-bar > *:not(:last-child) {
+#search-bar>*:not(:last-child) {
   margin-right: 0.5rem;
 }
 
@@ -145,28 +144,31 @@ footer {
   vertical-align: baseline;
 }
 
-.input-group > * {
+.input-group>* {
   line-height: 1.5rem;
   border: none;
 }
-.input-group > *:first-child {
+
+.input-group>*:first-child {
   border-radius: 25px 25px 0% 25px / 25px 0% 25px 25px;
 }
 
-.input-group > *:last-child {
+.input-group>*:last-child {
   border-radius: 25px 25px 25px 25px / 0% 25px 25px 0%;
 }
 
 .text-center {
   text-align: center;
 }
+
 .pokeCard {
   text-align: center;
 }
 
 .pokeInfo {
   display: grid;
-  grid-template-columns: 1fr 2fr; /* Deux colonnes pour l'image et les détails */
+  grid-template-columns: 1fr 2fr;
+  /* Deux colonnes pour l'image et les détails */
   align-items: flex-start;
   gap: 20px;
 }
@@ -177,7 +179,8 @@ footer {
 
 .infoDetails {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Deux colonnes pour les caractéristiques et les types */
+  grid-template-columns: 1fr 1fr;
+  /* Deux colonnes pour les caractéristiques et les types */
   gap: 20px;
   font-size: 1.3rem;
 }
@@ -216,4 +219,12 @@ footer {
 
 .results {
   text-decoration: none;
+}
+
+.welcome-banner {
+  background-color: rgb(255, 191, 0);
+  color: black;
+  text-align: center;
+  padding: 10px;
+  margin-top: 30px;
 }
