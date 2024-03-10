@@ -8,7 +8,7 @@ EvolutionPokemon(#idPokemon, #idEvolution)
 
 User(idUser, firstName, lastName, login, passwordHash)
 
-User_Pokemon(#idUser, #idPokemon, captureDate) 
+User_Pokemon(id, #idUser, #idPokemon, captureDate) 
 */
 
 CREATE TABLE users (
