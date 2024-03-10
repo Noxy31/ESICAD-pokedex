@@ -64,11 +64,11 @@ function authenticateUser() // fonction pour se connecter avec un utilisateur
     }
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['firstName'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['firstName'])) { // insertion
     insertUser($_POST['firstName'], $_POST['lastName'], $_POST['login'], $_POST['password']);
 }
 
-if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) { // authentication
     authenticateUser();
 }
 
