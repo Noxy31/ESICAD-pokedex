@@ -1,15 +1,32 @@
-<!-- 
-    Ce fichier représente la page de résultats de recherche de pokémons du site.
--->
 <?php
 require_once("head.php");
+require_once("database-connection.php");
 ?>
-<pre>
-    &lt;
-    A REMPLACER PAR VOTRE CODE POUR CHARGER ET AFFICHER DANS UN TABLEAU LE RESULTAT DE LA RECHERCHE DE POKEMONS DONT LE NOM CONTIENT LE TERME RECHERCHE, CLASSES PAR LEUR NOM.
-    CHAQUE POKEMON DOIT ETRE CLIQUABLE POUR NAVIGUER SUR UNE PAGE OU L'ON AFFICHE SON IMAGE ET L'ENSEMBLE DE SES CARACTERISTIQUES
-    &gt;
-    </pre>
+
+<?php
+if (isset($_GET["q"])) {
+    $query = "%" . $_GET["q"] . "%";
+    $stmt = $databaseConnection->prepare("SELECT idPokemon, nomPokemon, urlPhoto FROM Pokemon WHERE nomPokemon LIKE ?");
+    $stmt->bind_param("s", $query);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        echo "<h2>Résultats de la recherche :</h2>";
+        echo "<table class='tabList'>";
+        echo "<tr><th>Pokemon correspondant à la recherche : </th></tr>";
+
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr><td><a href='info-pokemon.php?id=" . $row['idPokemon'] . "' class='results'>" . $row['nomPokemon'] . "</a></td></tr>";
+        }
+
+        echo "</table>";
+    } else {
+        echo "<p>Aucun résultat trouvé.</p>";
+    }
+}
+?>
+
 <?php
 require_once("footer.php");
 ?>
